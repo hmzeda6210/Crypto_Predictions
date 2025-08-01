@@ -1,41 +1,48 @@
-🔹 Project 1: Bitcoin Price Prediction Using LSTM
-Notebook: LSTM_BTC_Final_Model.ipynb
+# Bitcoin Price Prediction Projects
 
-📘 Description:
-This project uses a Long Short-Term Memory (LSTM) neural network to predict the future price of Bitcoin based on historical price data.
+## Project 1: LSTM Price Prediction
+**Notebook:** `LSTM_BTC_Final_Model.ipynb`
 
-**Optimal Configuration**:
-- Data: 6 months of 1-hour intervals
+### Description
+Uses Long Short-Term Memory (LSTM) neural network to predict future Bitcoin prices based on historical data.
 
-Preprocessing includes scaling, reshaping, and time-window creation
+### Optimal Configuration
+- **Data**: 6 months of 1-hour intervals
+- **Preprocessing**: 
+  - Scaling
+  - Reshaping 
+  - Time-window creation
+- **Task**: Forecast next price point
+- **Visualizations**: Prediction vs actual price accuracy
 
-Model trained to forecast the next price point
+### Purpose
+Model temporal patterns in Bitcoin price trends using deep learning for short-term forecasting.
 
-Visualizations show the accuracy of predictions vs. actual prices
+---
 
-📌 Purpose:
-To model temporal patterns in Bitcoin price trends using deep learning for short-term forecasting.
+## Project 2: Price Movement Classification  
+**Notebook:** `BTC_Classification.ipynb`
 
-🔹 Project 2: Bitcoin Price Movement Classification
-Notebook: BTC_Classification.ipynb
+### Description
+Classifies whether the next Bitcoin price move will be up/down using machine learning.
 
-📘 Description:
-This project uses traditional machine learning to classify whether the next Bitcoin price move will be up or down, based on engineered features from historical data.
+### Features
+- **Binary classification** (Up/Down)
+- **Models**: Random Forest
+- **Feature Engineering**:
+  - Price returns
+  - Moving averages
+  - Technical indicators (RSI)
+- **Evaluation**:
+  - Confusion matrix
+  - Accuracy metrics
 
-✅ Highlights:
-Binary classification (Up/Down) using models like:
+### Purpose
+Classify short-term Bitcoin price direction using statistical features and supervised learning.
 
-Random Forest
+---
 
-Feature engineering includes:
-
-Price returns
-
-Moving averages
-
-Technical indicators (e.g., RSI)
-
-Evaluation with confusion matrix and accuracy metrics
-
-📌 Purpose:
-To classify short-term Bitcoin price direction using statistical features and supervised machine learning.
+## Usage
+1. Clone repository:
+```bash
+git clone https://github.com/hmzeda6210/Crypto_Predictions.git
