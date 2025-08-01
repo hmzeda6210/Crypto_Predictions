@@ -1,33 +1,41 @@
-# Crypto Predictions with LSTM
+🔹 Project 1: Bitcoin Price Prediction Using LSTM
+Notebook: LSTM_BTC_Final_Model.ipynb
 
-This project implements an LSTM-based model for cryptocurrency price prediction, focusing on Bitcoin (BTC) price forecasting.
+📘 Description:
+This project uses a Long Short-Term Memory (LSTM) neural network to predict the future price of Bitcoin based on historical price data.
 
-## Key Features
+**Optimal Configuration**:
+- Data: 6 months of 1-hour intervals
 
-- Uses Long Short-Term Memory (LSTM) neural networks for time series forecasting
-- Processes historical cryptocurrency price data
-- Includes data preprocessing and feature engineering
-- Implements model training and evaluation
+Preprocessing includes scaling, reshaping, and time-window creation
 
-## Best Performing Configuration
+Model trained to forecast the next price point
 
-**The highest model accuracy was achieved using:**
-- 6 months of historical Bitcoin price data
-- 1-hour interval timeframe
-- LSTM architecture with optimal hyperparameters
+Visualizations show the accuracy of predictions vs. actual prices
 
-## Requirements
+📌 Purpose:
+To model temporal patterns in Bitcoin price trends using deep learning for short-term forecasting.
 
-- Python 3.x
-- TensorFlow/Keras
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib (for visualization)
+🔹 Project 2: Bitcoin Price Movement Classification
+Notebook: BTC_Classification.ipynb
 
-## Installation
+📘 Description:
+This project uses traditional machine learning to classify whether the next Bitcoin price move will be up or down, based on engineered features from historical data.
 
-1. Clone the repository:
-```bash
-git clone https://github.com/hmzeda6210/Crypto_Predictions.git
-cd Crypto_Predictions
+✅ Highlights:
+Binary classification (Up/Down) using models like:
+
+Random Forest
+
+Feature engineering includes:
+
+Price returns
+
+Moving averages
+
+Technical indicators (e.g., RSI)
+
+Evaluation with confusion matrix and accuracy metrics
+
+📌 Purpose:
+To classify short-term Bitcoin price direction using statistical features and supervised machine learning.
