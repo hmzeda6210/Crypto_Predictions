@@ -1,19 +1,33 @@
-📈 Crypto Price Prediction
-This project explores Bitcoin price prediction using two machine learning approaches:
+# Crypto Predictions with LSTM
 
-LSTM (Long Short-Term Memory) neural networks
+This project implements an LSTM-based model for cryptocurrency price prediction, focusing on Bitcoin (BTC) price forecasting.
 
-Random Forest (RF) regression
+## Key Features
 
-It evaluates how historical BTC-USD price data can be used to forecast future prices with different time intervals and data ranges.
+- Uses Long Short-Term Memory (LSTM) neural networks for time series forecasting
+- Processes historical cryptocurrency price data
+- Includes data preprocessing and feature engineering
+- Implements model training and evaluation
 
-🧪 Best Results
-The best performance was achieved in LSTM_BTC_final.ipynb
+## Best Performing Configuration
 
-Configuration:
+**The highest model accuracy was achieved using:**
+- 6 months of historical Bitcoin price data
+- 1-hour interval timeframe
+- LSTM architecture with optimal hyperparameters
 
-6 months of historical Bitcoin data
+## Requirements
 
-1-hour intervals
+- Python 3.x
+- TensorFlow/Keras
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib (for visualization)
 
-This setup produced the highest accuracy using the LSTM model.
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/hmzeda6210/Crypto_Predictions.git
+cd Crypto_Predictions
