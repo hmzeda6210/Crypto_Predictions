@@ -27,12 +27,12 @@ Random Forest classifier over 5-minute BTCUSD bars.
 - **Split:** Chronological 70 / 15 / 15
 - **Reported result:** 75.3% validation accuracy, 71.5% test accuracy
 
-![Random Forest pipeline](RandomForest_Pipeline_Diagram.png)
 
-### 2. LSTM Price Forecasting
+### 2. LSTM Close-Price Regression
 **Notebook:** `LSTM_BTC_Final_Model.ipynb`
 
-Two-layer LSTM regression on the next close price.
+Two-layer LSTM regression on close price. The effective forecast horizon is
+two bars, not one — see error 5.
 
 - **Data:** 1-minute BTC-USD bars pulled live via `yfinance` (rolling 7-day window)
 - **Features:** OHLC, RSI(15), EMA 13/50/200
@@ -42,13 +42,11 @@ Two-layer LSTM regression on the next close price.
 - **Split:** Chronological 80 / 10 / 10
 - **Reported result:** validation R² 0.987, test R² 0.013
 
-![LSTM pipeline](LSTM_Pipeline_Diagram.png)
-
 ---
 
 ## What I'd do differently
 
-Reviewed in 2026. Four substantive problems, in order of severity.
+Reviewed in 2026. Five substantive problems, in order of severity.
 
 ### 1. The classification target looks backwards
 
@@ -99,6 +97,20 @@ The validation R² 0.987 → test R² 0.013 collapse was the warning sign, and I
 did not act on it. Metrics were also never inverse-transformed, so the
 reported RMSE of 0.0748 is in scaled 0–1 units and means nothing in dollars.
 
+### 5. The LSTM's forecast horizon is two bars, not one
+
+`create_sequences` builds each sample from rows *i* to *i+3* and takes its
+target from `TargetNextClose` at row *i+4*. Since `TargetNextClose` is
+`Close.shift(-1)`, the target is `Close[i+5]` — two bars beyond the last
+input bar, with bar *i+4* used neither as an input nor as the target.
+
+The variable name describes what I intended, not what the code does. Unlike
+the errors above, this one made the task *harder* rather than flattering the
+results: a two-bar horizon is strictly more difficult than one, and the model
+was denied the intervening bar entirely. It does not explain the poor test
+performance — the scaler leak does — but it means the model was never
+evaluated on the problem the report claims it solved.
+
 ### Also wrong
 
 - **Non-stationary features into a tree.** Raw OHLC and moving-average
@@ -119,12 +131,21 @@ reported RMSE of 0.0748 is in scaled 0–1 units and means nothing in dollars.
 
 ### The general lesson
 
-Every one of these is a variant of the same mistake: not printing a trivial
+Errors 1 to 4 are one mistake wearing four hats: not printing a trivial
 baseline next to the model. A backward-looking target and a leaking scaler
 both look like success right up until something with zero parameters beats
-you. I now treat a baseline as a precondition for reporting any model result,
-not a nice-to-have. That it took a final year project's worth of work to
-learn it is the point of leaving this up.
+you. A baseline is now a precondition for reporting any result, not a
+nice-to-have.
+
+Error 5 is a different failure and worth separating out. Nothing about the
+output looked wrong, because the bug was an off-by-one between a variable's
+name and its contents. `TargetNextClose` was taken at its word — by me then,
+and by every subsequent reading of the notebook — until someone traced the
+indices by hand. Naming is not documentation, and a pipeline that transforms
+indices needs its alignment asserted in code, not inferred from a label.
+
+Note also that errors 1 to 4 all flatter the results while error 5 works
+against them. They do not all point the same way.
 
 ---
 
@@ -158,7 +179,7 @@ whatever the last 7 days happen to be.
 | File | Description |
 |---|---|
 | `BTC_Classification.ipynb` | Random Forest trend classification |
-| `LSTM_BTC_Final_Model.ipynb` | LSTM next-close regression |
+| `LSTM_BTC_Final_Model.ipynb` | LSTM close-price regression |
 | `BTCUSD_m5.csv` | 5-minute BTCUSD OHLC, Jan 2023 – May 2024 (Dukascopy) |
 | `RandomForest_Pipeline_Diagram.png` | Classification pipeline diagram |
 | `LSTM_Pipeline_Diagram.png` | LSTM pipeline diagram |
