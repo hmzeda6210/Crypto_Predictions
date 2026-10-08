@@ -128,14 +128,6 @@ learn it is the point of leaving this up.
 
 ---
 
-## Dissertation
-
-The submitted report is included as `dissertation.pdf`. It was written in
-2024 and predates the audit above — where the two disagree, the audit is
-correct.
-
----
-
 ## Running these notebooks
 
 The notebooks are archived as-is and are **not** reproducible — see point 4
@@ -168,7 +160,6 @@ whatever the last 7 days happen to be.
 | `BTC_Classification.ipynb` | Random Forest trend classification |
 | `LSTM_BTC_Final_Model.ipynb` | LSTM next-close regression |
 | `BTCUSD_m5.csv` | 5-minute BTCUSD OHLC, Jan 2023 – May 2024 (Dukascopy) |
-| `dissertation.pdf` | Submitted final year project report (2024) |
 | `RandomForest_Pipeline_Diagram.png` | Classification pipeline diagram |
 | `LSTM_Pipeline_Diagram.png` | LSTM pipeline diagram |
 
